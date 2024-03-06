@@ -21,6 +21,7 @@ API que será utilizado no NeceSaúde
 - [Atualizar Cadastro](#atualizar-cadastro)
 - [Buscar dados Cadastro](#buscar-dados-cadastro)
 - [Cadastrar Bebê ou Criança](#cadastro-bebê-ou-criança)
+- [Buscar dados do Bebê ou Criança](#buscar-dados-bebe-ou-crianca)
 - [Atualizar dados do Bebê ou Criança](#atualizar-dados-bebe-ou-crianca)
 ### Listar Exames
 
@@ -57,7 +58,6 @@ Retorna um array com os exames cadastrados.
 |--------|----------
 |200|Exames retornadas com sucesso
 |204|Não há nenhum exame registrado em nosso banco de dados
-
 
 ---
 
@@ -148,7 +148,7 @@ Atualiza os dados do usuário baseado no `email` informado no path, utilizando o
 ```js
 {
     "nome": "Jorge",
-    "cpf": "12345678900",
+    "cpf": 12345678900,
     "idade": 23,
     "email": "jorgeramos@outlook.com",
     "senha": "jorgefeio2",
@@ -175,7 +175,7 @@ Busca os dados do usuário de acordo com o `email` passado pelo path, para ele p
  ```js
 {  
     "nome": "Jorge",
-    "cpf": "12345678900",
+    "cpf": 12345678900,
     "idade": 23,
     "email": "jorgeramos99@gmail.com",
     "senha": "jorgelindo1",
@@ -201,19 +201,92 @@ Cadastrar um bebê ou criança que o usuário desejar.
 
 | campos | tipo | obrigatório | descrição
 |--------|------|:-------------:|----------
+|cpfRespo| int | sim | CPF do responsável do bebê ou criança, deve ser o mesmo do que foi utilizado no cadastro.
 |nome| string | sim |Nome do bebê ou criança.
-|idade| int | sim | Idade de quem será cadastrado.
+|idade| string | sim | Idade de quem será cadastrado.
 |peso| string | sim | Peso de quem será cadastrado.
 |altura| string | sim | Altura de quem será cadastrado.
 |sexo| string | sim | Sexo de quem será cadastrado.
 
 ```js
-{
+{   
+    "cpfRespo": 12345678900,
     "nome": "Mateus",
     "idade": "2 anos",
     "peso": "10 kg",
     "altura": "1,23 cm",
     "sexo": "masculino"
-
 }
 ```
+
+#### Código de Status
+
+| código | descrição
+|--------|----------
+|200|Cadastro concluido com sucesso
+|400|Não foi possível cadastrar. Verifique se já é cadastrado
+
+---
+
+### Buscar dados do Bebê ou Criança
+
+`GET` /bebe-ou-crianca/`{cpfRespo}`
+
+Busca os dados de acordo com o `cpfRespo` passado pelo path, para ele poder atualizar algum dado caso queira.
+
+#### Exemplo de Resposta
+
+```js
+{   
+    "cpfRespo": 12345678900,
+    "nome": "Mateus",
+    "idade": "2 anos",
+    "peso": "10 kg",
+    "altura": "1,23 cm",
+    "sexo": "masculino"
+}
+```
+
+#### Código de Status
+
+| código | descrição
+|--------|----------
+|200|Dados encontrados com sucesso.
+|404|Não existe cadastro com os dados informados.
+
+---
+### Atualizar dados do Bebê ou Criança
+
+`PUT` /bebe-ou-crianca/`{usuario}`
+
+Atualiza os dados no `usuario` informado no path, utilizando os novos dados enviados no corpo da requisição.
+
+#### Corpo da Requisição
+
+| campos | tipo | obrigatório | descrição
+|--------|------|:-------------:|----------
+|cpfRespo| int | não | CPF do responsável do bebê ou criança, deve ser o mesmo do que foi utilizado no cadastro.
+|nome| string | não |Nome do bebê ou criança.
+|idade| string | não | Idade de quem será cadastrado.
+|peso| string | não | Peso de quem será cadastrado.
+|altura| string | não | Altura de quem será cadastrado.
+|sexo| string | não | Sexo de quem será cadastrado.
+
+```js
+{   
+    "cpfRespo": 12345678900,
+    "nome": "Mateus",
+    "idade": "3 anos",
+    "peso": "13 kg",
+    "altura": "1,30 cm",
+    "sexo": "masculino"
+}
+```
+
+#### Código de Status
+
+| código | descrição
+|--------|----------
+|200|Cadastro atualizado com sucesso.
+|404|Não existe cadastro com o `cpfRespo` informado
+---
