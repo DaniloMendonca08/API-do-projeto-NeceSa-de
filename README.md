@@ -19,7 +19,9 @@ API que será utilizado no NeceSaúde
 - [Cadastrar Usuário](#cadastrar-usuário)
 - [Autenticação do Usuário](#autenticacao-do-usuário)
 - [Atualizar Cadastro](#atualizar-cadastro)
-- [Atualizar/Buscar dados do Bebê ou Criança] (#atualizar-buscar-bebe-ou-crianca)
+- [Buscar dados Cadastro](#buscar-dados-cadastro)
+- [Cadastrar Bebê ou Criança](#cadastro-bebê-ou-criança)
+- [Atualizar dados do Bebê ou Criança](#atualizar-dados-bebe-ou-crianca)
 ### Listar Exames
 
 `GET` /exames
@@ -83,7 +85,7 @@ Cadastrar um novo usuário.
     "idade": 23,
     "email": "jorgeramos99@gmail.com",
     "senha": "jorgelindo1",
-    
+
 }
 ```
 
@@ -92,24 +94,28 @@ Cadastrar um novo usuário.
 | código | descrição
 |--------|----------
 |200|Usuário cadastrado com sucesso
-|400|Validação falhou. Verifique as regras para o corpo da requisição
+|400|Não foi possível cadastrar. Verifique se já é cadastrado
 
 ---
 
-### Detalhes da Categoria
+### Autenticação do usuário
 
-`GET` /categoria/`{id}`
+`GET` /usuario
 
-Retorna os dados detalhados da categoria com o `id` informado no parâmetro de path.
+Verifica se os dados inputados de login pelo usuário coincidem com os armazenados no banco de dados.
 
-### Exemplo de Resposta
+### Corpo da Requisição
+
+| campos | tipo | obrigatório | descrição
+|--------|------|:-------------:|----------
+|email| string | sim | Email que foi inserido no momento do cadastro
+|senha | string | sim | Senha que foi inserida no momento do cadastro.
 
 ```js
-// requisição para /categoria/1
+
 {  
-    "id": 1,
-    "nome": "Alimentação",
-    "icone": "fast-food"
+    "email": "jorgeramos99@gmail.com",
+    "senha": "jorgelindo1"
 }
 ```
 
@@ -117,53 +123,36 @@ Retorna os dados detalhados da categoria com o `id` informado no parâmetro de p
 
 | código | descrição
 |--------|----------
-|200|Dados da categoria retornados com sucesso.
-|401|Usuário não autenticado. Realize autenticação em /login
-|404|Não existe categoria com o `id` informado. Consulte lista em /categoria
+|200|Usuário autenticado com sucesso.
+|400|Email ou senha estão incorretos. Tente novamente.
+|404|Não existe cadastro com os dados informados.
 ---
 
-### Apagar Categoria
+### Atualizar Cadastro
 
-`DELETE` /categoria/`{id}`
+`PUT` /usuario/`{email}`
 
-Apaga a categoria indicada pelo `id` enviado no parâmetro de path.
-
-#### Código de Status
-
-| código | descrição
-|--------|----------
-|204|Categoria apagada com sucesso
-|401|Usuário não autenticado. Realize autenticação em /login
-|404|Não existe categoria com o `id` informado. Consulte lista em /categoria
----
-
-### Atualizar Categoria
-
-`PUT` /categoria/`{id}`
-
-Atualiza os dados da categoria com o `id` informado no path, utilizando os novos dados enviados no corpo da requisição.
+Atualiza os dados do usuário baseado no `email` informado no path, utilizando os novos dados enviados no corpo da requisição.
 
 #### Corpo da Requisição
 
 | campos | tipo | obrigatório | descrição
 |--------|------|:-------------:|----------
-|nome| string | sim |Um nome curto para a categoria.
-|icone| string | sim | O nome do ícone conforme o Material Icons
+| nome | string | não |Seu nome completo.
+| cpf | int | não | Seu CPF.
+|idade| int | não | Sua idade.
+|email| string | não | Seu email principal que será usado para o login.
+|senha | string | não | Senha que será utilizada para o login.
+
 
 ```js
-{  
-    "nome": "Alimentação",
-    "icone": "fast-food"
-}
-```
+{
+    "nome": "Jorge",
+    "cpf": "12345678900",
+    "idade": 23,
+    "email": "jorgeramos@outlook.com",
+    "senha": "jorgefeio2",
 
-#### Exemplo de Resposta
- 
- ```js
-{  
-    "id": 1,
-    "nome": "Alimentação",
-    "icone": "fast-food"
 }
 ```
 
@@ -171,7 +160,60 @@ Atualiza os dados da categoria com o `id` informado no path, utilizando os novos
 
 | código | descrição
 |--------|----------
-|204|Categoria atualizada com sucesso
-|400|Validação falhou. Verifique as regras para o corpo da requisição
-|401|Usuário não autenticado. Realize autenticação em /login
-|404|Não existe categoria com o `id` informado. Consulte lista em /categoria
+|200|Cadastro atualizado com sucesso.
+|404|Não existe cadastro com o `email` informado
+---
+
+### Buscar dados Cadastro
+
+`GET` /usuario/`{email}`
+
+Busca os dados do usuário de acordo com o `email` passado pelo path, para ele poder atualizar algum dado caso queira.
+
+#### Exemplo de Resposta
+ 
+ ```js
+{  
+    "nome": "Jorge",
+    "cpf": "12345678900",
+    "idade": 23,
+    "email": "jorgeramos99@gmail.com",
+    "senha": "jorgelindo1",
+}
+```
+
+#### Código de Status
+
+| código | descrição
+|--------|----------
+|200|Dados encontrados com sucesso.
+|404|Não existe cadastro com os dados informados.
+
+---
+
+### Cadastrar Bebê ou Criança
+
+`POST` /cadastro-bebe-ou-crianca
+
+Cadastrar um bebê ou criança que o usuário desejar.
+
+#### Corpo da Requisição
+
+| campos | tipo | obrigatório | descrição
+|--------|------|:-------------:|----------
+|nome| string | sim |Nome do bebê ou criança.
+|idade| int | sim | Idade de quem será cadastrado.
+|peso| string | sim | Peso de quem será cadastrado.
+|altura| string | sim | Altura de quem será cadastrado.
+|sexo| string | sim | Sexo de quem será cadastrado.
+
+```js
+{
+    "nome": "Mateus",
+    "idade": "2 anos",
+    "peso": "10 kg",
+    "altura": "1,23 cm",
+    "sexo": "masculino"
+
+}
+```
