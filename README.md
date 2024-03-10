@@ -17,12 +17,12 @@ API que será utilizado no NeceSaúde
 <!-- - [Calculo IMC] (#calculo-imc) -->
 - [Listar Exames](#listar-exames)
 - [Cadastrar Usuário](#cadastrar-usuário)
-- [Autenticação do Usuário](#autenticacao-do-usuário)
+- [Autenticação do Usuário](#autenticação-do-usuário)
 - [Atualizar Cadastro](#atualizar-cadastro)
 - [Buscar dados Cadastro](#buscar-dados-cadastro)
-- [Cadastrar Bebê ou Criança](#cadastro-bebê-ou-criança)
-- [Buscar dados do Bebê ou Criança](#buscar-dados-bebe-ou-crianca)
-- [Atualizar dados do Bebê ou Criança](#atualizar-dados-bebe-ou-crianca)
+- [Cadastrar Bebê ou Criança](#cadastrar-bebê-ou-criança)
+- [Buscar dados do Bebê ou Criança](#buscar-dados-do-bebê-ou-criança)
+- [Atualizar dados do Bebê ou Criança](#atualizar-dados-do-bebê-ou-criança)
 ### Listar Exames
 
 `GET` /exames
@@ -98,7 +98,7 @@ Cadastrar um novo usuário.
 
 ---
 
-### Autenticação do usuário
+### Autenticação do Usuário
 
 `GET` /usuario
 
