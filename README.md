@@ -15,7 +15,8 @@ API que será utilizado no NeceSaúde
 
 ### Endpoints
 <!-- - [Calculo IMC] (#calculo-imc) -->
-- [Listar Exames](#listar-exames)
+- [Cadastrar Exame de Sangue](#cadastrar-exame-de-sangue)
+- [Listar Exames de Sangue](#listar-exames-de-sangue)
 - [Cadastrar Usuário](#cadastrar-usuário)
 - [Autenticação do Usuário](#autenticação-do-usuário)
 - [Atualizar Cadastro](#atualizar-cadastro)
@@ -23,7 +24,45 @@ API que será utilizado no NeceSaúde
 - [Cadastrar Bebê ou Criança](#cadastrar-bebê-ou-criança)
 - [Buscar dados do Bebê ou Criança](#buscar-dados-do-bebê-ou-criança)
 - [Atualizar dados do Bebê ou Criança](#atualizar-dados-do-bebê-ou-criança)
-### Listar Exames
+
+### Cadastrar Exame de Sangue
+
+`POST` /cadastro-exame
+
+### Corpo da Requisição
+
+| campos | tipo | obrigatório | descrição
+|--------|------|:-------------:|----------
+|nome| string | sim | Nome do exame.
+|data| string | sim | Data em que o exame foi realizado.
+|colesterol LDL| int | sim | Dados do colesterol LDL.
+|colesterol HDL| int | sim | Dados do colesterol HDL.
+|triglicérides| int | sim | Dados do triglicérides.
+|glicose| int | sim | Dados da glicose.
+
+
+```js
+[
+    {   
+        "nome": "Exame de sangue",
+        "data": "01/01/2024",
+        "colesterol LDL": 110,
+        "colesterol HDL": 69,
+        "triglicérides":  77,
+        "glicose": 310
+    }
+]
+```
+
+#### Código de Status
+
+| código | descrição
+|--------|----------
+|200|Exame cadastrado com sucesso.
+
+---
+
+### Listar Exames de Sangue
 
 `GET` /exames
 
@@ -37,9 +76,10 @@ Retorna um array com os exames cadastrados.
         "id": 1,
         "nome": "Exame de sangue",
         "data": "21/01/2024",
-        "colesterol LDL": "123",
-        "colesterol HDL": "100",
-        "triglicérides":  220
+        "colesterol LDL": 123,
+        "colesterol HDL": 100,
+        "triglicérides":  220,
+        "glicose": 210
     },
     {
         "id": 2,
@@ -47,7 +87,8 @@ Retorna um array com os exames cadastrados.
         "data": "27/02/2024",
         "colesterol LDL": 109,
         "colesterol HDL": 84,
-        "triglicérides":  155
+        "triglicérides":  155,
+        "glicose": 182
     }
 ]
 ```
@@ -103,13 +144,6 @@ Cadastrar um novo usuário.
 `GET` /usuario
 
 Verifica se os dados inputados de login pelo usuário coincidem com os armazenados no banco de dados.
-
-### Corpo da Requisição
-
-| campos | tipo | obrigatório | descrição
-|--------|------|:-------------:|----------
-|email| string | sim | Email que foi inserido no momento do cadastro
-|senha | string | sim | Senha que foi inserida no momento do cadastro.
 
 ```js
 
