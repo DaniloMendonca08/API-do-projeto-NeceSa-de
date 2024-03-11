@@ -72,7 +72,7 @@ Retorna um array com os exames cadastrados.
 ```js
 [
     {   
-        "id": 1,
+        "id": 09253,
         "nome": "Exame de sangue",
         "data": "21/01/2024",
         "colesterol LDL": 123,
@@ -81,7 +81,7 @@ Retorna um array com os exames cadastrados.
         "glicose": 210
     },
     {
-        "id": 2,
+        "id": 052363,
         "nome": "Exame de sangue",
         "data": "27/02/2024",
         "colesterol LDL": 109,
@@ -112,7 +112,7 @@ Cadastrar um novo usuário.
 | campos | tipo | obrigatório | descrição
 |--------|------|:-------------:|----------
 | nome | string | sim |Seu nome completo.
-| cpf | int | sim | Seu CPF.
+| cpf | long | sim | Seu CPF.
 |idade| int | sim | Sua idade.
 |email| string | sim | Seu email principal que será usado para o login.
 |senha | string | sim | Senha que será utilizada para o login.
@@ -121,7 +121,7 @@ Cadastrar um novo usuário.
 ```js
 {
     "nome": "Jorge",
-    "cpf": "12345678900",
+    "cpf": 12345678900,
     "idade": 23,
     "email": "jorgeramos99@gmail.com",
     "senha": "jorgelindo1",
@@ -172,7 +172,7 @@ Atualiza os dados do usuário baseado no `email` informado no path, utilizando o
 | campos | tipo | obrigatório | descrição
 |--------|------|:-------------:|----------
 | nome | string | não |Seu nome completo.
-| cpf | int | não | Seu CPF.
+| cpf | long | não | Seu CPF.
 |idade| int | não | Sua idade.
 |email| string | não | Seu email principal que será usado para o login.
 |senha | string | não | Senha que será utilizada para o login.
@@ -234,7 +234,7 @@ Cadastrar um bebê ou criança que o usuário desejar.
 
 | campos | tipo | obrigatório | descrição
 |--------|------|:-------------:|----------
-|cpfRespo| int | sim | CPF do responsável do bebê ou criança, deve ser o mesmo do que foi utilizado no cadastro.
+|cpfRespo| long | sim | CPF do responsável do bebê ou criança, deve ser o mesmo do que foi utilizado no cadastro.
 |nome| string | sim |Nome do bebê ou criança.
 |idade| string | sim | Idade de quem será cadastrado.
 |peso| string | sim | Peso de quem será cadastrado.
@@ -245,9 +245,9 @@ Cadastrar um bebê ou criança que o usuário desejar.
 {   
     "cpfRespo": 12345678900,
     "nome": "Mateus",
-    "idade": "2 anos",
-    "peso": "10 kg",
-    "altura": "1,23 cm",
+    "idade": "5 meses",
+    "peso": "7.5 kg",
+    "altura": "60 cm",
     "sexo": "masculino"
 }
 ```
@@ -273,9 +273,9 @@ Busca os dados de acordo com o `cpfRespo` passado pelo path, para ele poder atua
 {   
     "cpfRespo": 12345678900,
     "nome": "Mateus",
-    "idade": "2 anos",
-    "peso": "10 kg",
-    "altura": "1,23 cm",
+    "idade": "5 meses",
+    "peso": "7.5 kg",
+    "altura": "60 cm",
     "sexo": "masculino"
 }
 ```
@@ -298,7 +298,7 @@ Atualiza os dados no `usuario` informado no path, utilizando os novos dados envi
 
 | campos | tipo | obrigatório | descrição
 |--------|------|:-------------:|----------
-|cpfRespo| int | não | CPF do responsável do bebê ou criança, deve ser o mesmo do que foi utilizado no cadastro.
+|cpfRespo| long | não | CPF do responsável do bebê ou criança, deve ser o mesmo do que foi utilizado no cadastro.
 |nome| string | não |Nome do bebê ou criança.
 |idade| string | não | Idade de quem será cadastrado.
 |peso| string | não | Peso de quem será cadastrado.
