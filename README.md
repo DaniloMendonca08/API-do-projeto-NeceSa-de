@@ -26,7 +26,7 @@ API que será utilizado no NeceSaúde
 
 ### Cadastrar Exame de Sangue
 
-`POST` /cadastro-exame
+`POST` /exames/cadastro
 
 ### Corpo da Requisição
 
