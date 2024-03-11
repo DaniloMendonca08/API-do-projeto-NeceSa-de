@@ -5,12 +5,11 @@ API que será utilizado no NeceSaúde
 ## Requisitos
 <!-- - [ ] Cálculo de IMC -->
 - [ ] CRUD de Exames
-- [ ] CRUD de Criança/Bebê 
+- [ ] CRUD Infantil  
 - [ ] CRUD de Usuários
 - [ ] Autenticação
 - [ ] Dashboard
 <!-- // 1 Requisito ainda vai ser discutido -->
-
 ## Documentação
 
 ### Endpoints
@@ -21,9 +20,9 @@ API que será utilizado no NeceSaúde
 - [Autenticação do Usuário](#autenticação-do-usuário)
 - [Atualizar Cadastro](#atualizar-cadastro)
 - [Buscar dados Cadastro](#buscar-dados-cadastro)
-- [Cadastrar Bebê ou Criança](#cadastrar-bebê-ou-criança)
-- [Buscar dados do Bebê ou Criança](#buscar-dados-do-bebê-ou-criança)
-- [Atualizar dados do Bebê ou Criança](#atualizar-dados-do-bebê-ou-criança)
+- [Cadastro Infantil](#cadastro-infantil)
+- [Buscar dados Infantis](#buscar-dados-infantis)
+- [Atualizar dados Infantis](#atualizar-dados-infantis)
 
 ### Cadastrar Exame de Sangue
 
@@ -225,9 +224,9 @@ Busca os dados do usuário de acordo com o `email` passado pelo path, para ele p
 
 ---
 
-### Cadastrar Bebê ou Criança
+### Cadastro Infantil
 
-`POST` /cadastro-bebe-ou-crianca
+`POST` /cadastro-infantil
 
 Cadastrar um bebê ou criança que o usuário desejar.
 
@@ -262,9 +261,9 @@ Cadastrar um bebê ou criança que o usuário desejar.
 
 ---
 
-### Buscar dados do Bebê ou Criança
+### Buscar dados Infantis
 
-`GET` /bebe-ou-crianca/`{cpfRespo}`
+`GET` /infantil/`{cpfRespo}`
 
 Busca os dados de acordo com o `cpfRespo` passado pelo path, para ele poder atualizar algum dado caso queira.
 
@@ -289,9 +288,9 @@ Busca os dados de acordo com o `cpfRespo` passado pelo path, para ele poder atua
 |404|Não existe cadastro com os dados informados.
 
 ---
-### Atualizar dados do Bebê ou Criança
+### Atualizar dados Infantis
 
-`PUT` /bebe-ou-crianca/`{usuario}`
+`PUT` /infantil/`{usuario}`
 
 Atualiza os dados no `usuario` informado no path, utilizando os novos dados enviados no corpo da requisição.
 
