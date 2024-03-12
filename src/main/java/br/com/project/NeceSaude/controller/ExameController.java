@@ -6,12 +6,10 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.project.NeceSaude.model.Exame;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +25,7 @@ public class ExameController {
     List<Exame> exames = new ArrayList<>();
 
     @PostMapping("cadastro")
-    public ResponseEntity<Object> create(@RequestBody Exame exame) {
+    public ResponseEntity<Object> cadastrarExame(@RequestBody Exame exame) {
         
         log.info("Cadastrando exame");
         exames.add(exame);

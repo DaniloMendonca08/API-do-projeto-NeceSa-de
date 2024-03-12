@@ -103,7 +103,7 @@ Retorna um array com os exames cadastrados.
 
 ### Cadastrar Usuário
 
-`POST` /cadastro
+`POST` /usuario/cadastro
 
 Cadastrar um novo usuário.
 
@@ -140,7 +140,7 @@ Cadastrar um novo usuário.
 
 ### Autenticação do Usuário
 
-`GET` /usuario
+`GET` /usuario/autenticar
 
 Verifica se os dados inputados de login pelo usuário coincidem com os armazenados no banco de dados.
 
@@ -226,7 +226,7 @@ Busca os dados do usuário de acordo com o `email` passado pelo path, para ele p
 
 ### Cadastro Infantil
 
-`POST` /cadastro-infantil
+`POST` /infantil/cadastro
 
 Cadastrar um bebê ou criança que o usuário desejar.
 
@@ -290,9 +290,9 @@ Busca os dados de acordo com o `cpfRespo` passado pelo path, para ele poder atua
 ---
 ### Atualizar dados Infantis
 
-`PUT` /infantil/`{usuario}`
+`PUT` /infantil/`{cpfRespo}`
 
-Atualiza os dados no `usuario` informado no path, utilizando os novos dados enviados no corpo da requisição.
+Atualiza os dados no `cpfRespo` informado no path, utilizando os novos dados enviados no corpo da requisição.
 
 #### Corpo da Requisição
 
