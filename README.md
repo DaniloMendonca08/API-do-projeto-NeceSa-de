@@ -163,7 +163,7 @@ Verifica se os dados inputados de login pelo usuário coincidem com os armazenad
 
 ### Atualizar Cadastro
 
-`PUT` /usuario/`{email}`
+`PUT` /usuario/atualizar/`{email}`
 
 Atualiza os dados do usuário baseado no `email` informado no path, utilizando os novos dados enviados no corpo da requisição.
 
@@ -290,7 +290,7 @@ Busca os dados de acordo com o `cpfRespo` passado pelo path, para ele poder atua
 ---
 ### Atualizar dados Infantis
 
-`PUT` /infantil/`{cpfRespo}`
+`PUT` /infantil/atualizar/`{cpfRespo}`
 
 Atualiza os dados no `cpfRespo` informado no path, utilizando os novos dados enviados no corpo da requisição.
 

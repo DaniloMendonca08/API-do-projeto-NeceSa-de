@@ -1,17 +1,23 @@
 package br.com.project.NeceSaude.model;
 
-import java.util.Random;
 
-public record Exame (Long id, String nome, String data, Integer colesterolLDL, Integer colesterolHDL, Integer triglicerides, Integer glicose ){
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.Data;
+
+@Data
+@Entity
+public class Exame extends Object{
     
-    public Exame(Long id, String nome, String data, Integer colesterolLDL, Integer colesterolHDL, Integer triglicerides, Integer glicose ) {
-
-        this.id = Math.abs( new Random().nextLong() );
-        this.nome = nome;
-        this.data = data;
-        this.colesterolLDL = colesterolLDL;
-        this.colesterolHDL = colesterolHDL;
-        this.triglicerides = triglicerides;
-        this.glicose = glicose;
-    }
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+        private Integer id;
+        
+        private String nome;
+        private String data;
+        private Integer colesterolLDL;
+        private Integer colesterolHDL;
+        private Integer triglicerides;
+        private Integer glicose;
 }
