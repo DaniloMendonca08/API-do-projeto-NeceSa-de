@@ -1,5 +1,7 @@
 package br.com.project.NeceSaude.model;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Data;
@@ -12,7 +14,7 @@ public class Usuario extends Object {
     private Long cpf;
 
     private String nome;
-    private int idade;
+    private LocalDate data_nascimento;
     private String email;
     private String senha;
 }

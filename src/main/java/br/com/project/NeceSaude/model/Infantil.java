@@ -1,5 +1,7 @@
 package br.com.project.NeceSaude.model;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Data;
@@ -12,7 +14,7 @@ public class Infantil extends Object {
     private Long cpfRespo;
     
     private String nome;
-    private String idade;
+    private LocalDate data_nascimento;
     private String peso;
     private String altura;
     private String sexo;

@@ -1,6 +1,8 @@
 package br.com.project.NeceSaude.model;
 
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,7 +17,7 @@ public class Exame extends Object{
         private Integer id;
         
         private String nome;
-        private String data;
+        private LocalDate data;
         private Integer colesterolLDL;
         private Integer colesterolHDL;
         private Integer triglicerides;
