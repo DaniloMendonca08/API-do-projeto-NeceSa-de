@@ -5,8 +5,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import br.com.project.NeceSaude.model.Usuario;
 import br.com.project.NeceSaude.repository.UsuarioRepository;
-
-import java.util.Optional;
+import jakarta.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,7 +34,7 @@ public class UsuarioController {
 
     @PostMapping("/cadastro")
     @ResponseStatus(CREATED)
-    public Usuario cadastrarUsuario(@RequestBody Usuario usuario) {
+    public Usuario cadastrarUsuario(@RequestBody @Valid Usuario usuario) {
 
         log.info("Cadastrando usuario...");
 
@@ -54,19 +53,24 @@ public class UsuarioController {
 
     }
 
-    @GetMapping("/{email}/{senha}")
-    public ResponseEntity<Usuario> autenticarUsuario(@PathVariable String email, String senha) {
+    @GetMapping("{email}/{senha}")
+    public ResponseEntity<Usuario> autenticarUsuario(@PathVariable String email, @PathVariable String senha) {
         
-        Optional<Usuario> usuarioDBA = repository.findByEmailAndSenha(email, senha);
+         var DBEmail = repository.findByEmail(email).isPresent();
+         var DBSenha = repository.findBySenha(senha).isPresent();
 
-        return usuarioDBA.map(usuario -> {
-            log.info("Usuário autenticado com sucesso.");
-            return ResponseEntity.ok(usuario);
-        }).orElse(ResponseEntity.notFound().build());
+         if (DBEmail == true  && DBSenha == true) {
+             log.info("Usuario autenticado com sucesso!");
+             return ResponseEntity.ok().build();
+         } 
+
+         log.info("Email ou senha estão incorretos");
+         return ResponseEntity.notFound().build();
+
     }
 
     @PutMapping("/atualizar/{email}")
-    public Usuario atualizarCadastro(@RequestBody Usuario usuario, @PathVariable String email) {
+    public Usuario atualizarCadastro(@RequestBody @Valid Usuario usuario, @PathVariable String email) {
         
         log.info("Atualizando dados do usuário...");
 

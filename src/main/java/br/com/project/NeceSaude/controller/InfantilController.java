@@ -1,5 +1,7 @@
 package br.com.project.NeceSaude.controller;
 
+import static org.springframework.http.HttpStatus.CREATED;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +13,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import br.com.project.NeceSaude.model.Infantil;
 import br.com.project.NeceSaude.repository.InfantilRepository;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("infantil")
@@ -27,13 +31,13 @@ public class InfantilController {
     InfantilRepository repository;
 
     @PostMapping("/cadastro")
-    public ResponseEntity<Object> cadastrarInfantil(@RequestBody Infantil infantil) {
+    @ResponseStatus(CREATED)
+    public Infantil cadastrarInfantil(@RequestBody @Valid Infantil infantil) {
 
         log.info("Cadastrando infantil...");
 
-        repository.save(infantil);
+        return repository.save(infantil);
 
-        return ResponseEntity.ok().build();
     }
 
     @GetMapping("{cpfRespo}")
@@ -49,12 +53,12 @@ public class InfantilController {
     } 
 
     @PutMapping("/atualizar")
-    public Infantil atualizarInfantil(@RequestBody Infantil infantil) {
+    public Infantil atualizarInfantil(@RequestBody @Valid Infantil infantil) {
 
         log.info("Atualizando dados infantis...");
 
         repository
-        .findById(infantil.getCpfRespo())
+        .findByCpfRespo(infantil.getCpfRespo())
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Não existe cadastro infantil com o CPF do responsável informado."));
 
         return repository.save(infantil);
