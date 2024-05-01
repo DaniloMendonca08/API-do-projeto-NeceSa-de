@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -34,5 +35,8 @@ public class Infantil extends Object {
 
     @Size(min = 8, max = 9, message = "O sexo deve ser masculino ou feminino")
     private String sexo;
+
+    @ManyToOne //um usuario pode ter varios infantis(filhos), mas um infantil pertence a apenas um usuario
+    private Usuario usuario;
 
 }

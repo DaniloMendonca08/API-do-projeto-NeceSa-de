@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Past;
@@ -44,4 +45,7 @@ public class Exame extends Object{
         @Digits(integer = 3, fraction = 0, message = "{exame.glicose.digits}")
         @Min(value = 10, message = "{exame.glicose.min}")
         private Integer glicose;
+
+        @ManyToOne //um usuário pode ter varios exames, mas um exame pertence apenas a um usuário
+        private Usuario usuario;
 }
